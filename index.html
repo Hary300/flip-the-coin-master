@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      href="resources/favicon.ico"
+      type="image/x-icon"
+      sizes="96x96"
+    />
+    <link href="./src/output.css" rel="stylesheet" />
+
+    <title>Flip the coin | devChallenges.io</title>
+
+    <!--You are welcome to delete these styles or modify them in your own stylesheet -->
+  </head>
+  <body class="text-center bg-[#404A65] font-Kanit py-20 px-5 text-white">
+    <div class="space-y-5 mb-20">
+      <h1 class="text-[4.7rem] font-extrabold text-stroke-dark-gray tracking-">
+        Flip the Coin
+      </h1>
+      <h2 class="text-[1.7rem] font-semibold">
+        Press the coin or the button to flip the coin
+      </h2>
+    </div>
+    <div class="mb-15 space-y-10 flex flex-col items-center">
+      <img
+        id="headSide"
+        src="./resources/heads.svg"
+        alt="headsSide"
+        width="160"
+        height="160"
+      />
+
+      <!-- <img src="./resources/tails.svg" alt="tailsSide" /> -->
+
+      <img src="./resources/shadow.svg" alt="Shadow" width="100" height="8" />
+      <h2 id="sideInfo" class="text-[1.7rem] font-semibold">Heads</h2>
+    </div>
+
+    <button
+      id="randomBtn"
+      class="text-[1.7rem] py-1 px-6 rounded-lg bg-[#1F6FB0] font-semibold hover:bg-[#3589cf] hover:scale-110 shadow-lg hover:translate-y-1 active:scale-95 transition-transform duration-150"
+    >
+      RANDOM
+    </button>
+
+    <footer class="text-sm text-center text-gray-400 mt-10">
+      Coded by
+      <a href="https://github.com/Hary300" class="text-white hover:underline"
+        >Hary300</a
+      >
+      | Challenge by
+      <a
+        href="https://www.devchallenges.io?ref=challenge"
+        target="_blank"
+        class="text-white hover:underline"
+        >devChallenges.io</a
+      >.
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+      const coin = document.getElementById('headSide');
+      const sideInfo = document.getElementById('sideInfo');
+      const randomBtn = document.getElementById('randomBtn');
+
+      function flipCoin() {
+        const isHeads = Math.random() < 0.5;
+        if (isHeads) {
+          coin.src = './resources/heads.svg';
+          sideInfo.textContent = 'Heads';
+        } else {
+          coin.src = './resources/tails.svg';
+          sideInfo.textContent = 'Tails';
+        }
+      }
+      function fireConfetti() {
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      }
+      randomBtn.addEventListener('click', () => {
+        flipCoin();
+        confetti();
+      });
+    </script>
+  </body>
+</html>
